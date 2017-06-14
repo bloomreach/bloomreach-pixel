@@ -1,0 +1,63 @@
+<html>
+  <head>
+<!-- Google Tag Manager -->
+    <style>
+      .selected {font-size: 24px; font-weight: bold;}
+    </style>
+
+    <script>
+      dataLayer = [{
+        "pageType": "thematic",
+        "countryVersion": "en-us",
+        "userId": "stormy"
+      }];
+    </script>
+
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MTVRBVT');
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+  </head>
+
+  <body>
+    <form action="search.html" autocomplete="off">
+      <div id="autocomplete-container">
+        <input type="text" name="query" placeholder="search" id="autocomplete-input"></input>
+        <ul id="autocomplete-results">
+        </ul>
+      </div>
+      <input type="submit">
+    </form>
+    
+    <h1>Thematic Page</h1>
+
+    <h2>Page Views</h2>
+    <ul>
+      <li><a href="index.html">Home Page</a></li>
+      <li><a href="product.html">Product Page</a></li>
+      <li><a href="category.html">Category Page</a></li>
+      <li><a href="search.html">Search Page</a></li>
+      <li><a href="conversion.html">Conversion Page</a></li>
+      <li><a href="content.html">Content Page</a></li>
+      <li class="selected"><a href="thematic.html">Thematic Page</a></li>
+      <li><a href="trending.html">Trending Page</a></li>
+      <li><a href="morelikethis.html">More Like This Page</a></li>
+      <li><a href="justforyou.html">Just For You Page</a></li>
+    </ul>
+
+    <h2>User Interaction Events</h2>
+    <ul>
+      <li><button id="addtocart">Add To Cart</button></li>
+      <li><button id="quickview">Product QuickView</button></li>
+    </ul>
+
+    <script src="app.js"></script>
+
+  </body>
+
+</html>

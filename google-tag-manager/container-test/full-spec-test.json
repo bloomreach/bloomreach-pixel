@@ -1,0 +1,941 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2017-06-14 18:45:31",
+    "containerVersion": {
+        "path": "accounts/1321514653/containers/6984898/versions/0",
+        "accountId": "1321514653",
+        "containerId": "6984898",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/1321514653/containers/6984898",
+            "accountId": "1321514653",
+            "containerId": "6984898",
+            "name": "Full Container",
+            "publicId": "GTM-MTVRBVT",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1497465915717",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/1321514653/containers/6984898/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "tagId": "7",
+                "name": "BloomReach Add To Cart Event",
+                "type": "html",
+                "notes": "Any time a user adds an item to their cart, BloomrReach's Add To Cart Event should fire. Typically this includes the product display page and product listing pages such as category or search pages. If an Add To Cart button is located anywhere else on your site (e.g. Product Collection or Sku Set pages) , please also fire this tag there as well.",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script type=\"text/javascript\">\n  BrTrk.getTracker().logEvent(\"cart\", \"click-add\", {{BloomReach Cart Data}});\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1497385219803",
+                "firingTriggerId": [
+                    "24"
+                ],
+                "parentFolderId": "48",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "tagId": "1",
+                "name": "BloomReach PageView",
+                "type": "html",
+                "notes": "Base configuration for BloomReach tracking pixel that needs to fire on all page views. When fired, requests BloomReach's tracker javascript and configures it according to your site-wide settings.\n\nAt time of evaluation, if the BloomReach Page Type variable is one of (\"product\", \"category\", \"search\"), will set additional required parameters for those page types. If the BloomReach Page Type variable is \"other\" and BloomReach Is Conversion variable is 1, the conversion page view additional required parameters will also be set.\n\nFor facet filters on Category and Search Pages:\nIf a user applies a facet filter and refreshes results, the Category and Search pixels respectively should fire again each time filters are applied. Bloomreach uses this information to understand which filters are commonly used.",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script type=\"text/javascript\">\n  var br_data = br_data || {};\n\n  br_data.acct_id = {{BloomReach Account ID}};\n  br_data.user_id = {{BloomReach User ID}};\n  br_data.domain_key = {{BloomReach Domain Key}};\n  br_data.view_id = {{BloomReach View ID}};\n  br_data.tms= {{BloomReach Tag Manager ID}};\n  \n  br_data.ptype = {{BloomReach Page Type}};\n  \n  switch (br_data.ptype) {\n  case 'product':\n    br_data.prod_id = {{BloomReach Product ID}};\n    br_data.prod_name = {{BloomReach Product Name}};\n    br_data.sku = {{BloomReach Product SKU}};\n    br_data.prod_ver = {{BloomReach Product Version ID}};\n    break;\n  case 'category':\n    br_data.cat_id = {{BloomReach Category ID}};\n    br_data.cat = {{BloomReach Category}};\n    break;\n  case 'search':\n    br_data.search_term = {{BloomReach Search Term}};\n    break;\n  case 'other':\n    if ({{BloomReach Is Conversion}}) {\n      br_data.is_conversion = {{BloomReach Is Conversion}};\n      br_data.basket_value = {{BloomReach Basket Value}};\n      br_data.order_id = {{BloomReach Order ID}};\n      br_data.basket = {{BloomReach Basket}};\n    }\n    break;\n  }\n  \n  (function() {\n  var brtrk = document.createElement('script');\n  brtrk.type = 'text/javascript';\n  brtrk.async = true;\n  brtrk.src = 'https:' == document.location.protocol ? \"https://cdns.brsrvr.com/v1/br-trk-{{BloomReach Account ID}}.js\" : \"http://cdn.brcdn.com/v1/br-trk-{{BloomReach Account ID}}.js\";\n  var s = document.getElementsByTagName('script')[0];\n  s.parentNode.insertBefore(brtrk, s);\n  })();\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1497462822384",
+                "firingTriggerId": [
+                    "2147479553"
+                ],
+                "parentFolderId": "49",
+                "tagFiringOption": "ONCE_PER_LOAD"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "tagId": "8",
+                "name": "BloomReach Quick View Event",
+                "type": "html",
+                "notes": "Anytime a user opens a Quick View to display more details about a product on your site, BloomReach expects a Quick View Event to fire.\n\nQuick Views are commonly found on Product Listing pages, but if there are alternate locations to trigger a Quick View, please also fire on those locations as well.",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script type=\"text/javascript\">\n  BrTrk.getTracker().logEvent('product', 'quickview', {{BloomReach Quick View Data}});\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1497384956687",
+                "firingTriggerId": [
+                    "25"
+                ],
+                "parentFolderId": "48",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "tagId": "10",
+                "name": "BloomReach Search Submit Event",
+                "type": "html",
+                "notes": "When a user clicks on the submit button or hits the enter key on a search form, BloomReach expects a Search Submit Event to fire.\n\nNote: the next pixel that is fired (typically the search page view pixel) will automatically contain the parameters fired in Search Submit event pixel prefixed with \"df_\".",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script type=\"text/javascript\">\n  BrTrk.getTracker().logEvent('suggest', 'submit', {{BloomReach Search Submit Data}}, {}, true);\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1497385138632",
+                "firingTriggerId": [
+                    "27"
+                ],
+                "parentFolderId": "48",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "tagId": "9",
+                "name": "BloomReach Search Suggest Event",
+                "type": "html",
+                "notes": "If you have an auto-suggest feature in your search form, when a user clicks on a search suggestion, BloomReach expects a Search Suggest Event to fire.\n\nNote: the next pixel that is fired (typically the search page view pixel) will automatically contain the parameters fired in Search Suggest event pixel prefixed with \"df_\".",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script type=\"text/javascript\">\n  BrTrk.getTracker().logEvent('suggest', 'click', {{BloomReach Search Suggest Data}}, {}, true);\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1497385211590",
+                "firingTriggerId": [
+                    "26"
+                ],
+                "parentFolderId": "48",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "triggerId": "24",
+                "name": "Add To Cart",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "addToCart"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "addToCart"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1497040367727"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "triggerId": "25",
+                "name": "Product Quick View Open",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "productQuickViewOpen"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "productQuickViewOpen"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1497040659109"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "triggerId": "27",
+                "name": "Search Submit",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "searchSubmit"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "searchSubmit"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1497040839823"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "triggerId": "26",
+                "name": "Search Suggest",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "searchSuggest"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "searchSuggest"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1497039440027"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "1",
+                "name": "BloomReach Account ID",
+                "type": "c",
+                "notes": "The BloomReach-provided BloomReach supplied Account identifier. This ID is a constant and is pre-populated.  If your account ID is not pre-populated, please reach out to your Technical Project Manager at Bloomreach.\n\nVariable Type: String\n\nExample: 1235",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "5014"
+                    }
+                ],
+                "fingerprint": "1497458563635",
+                "parentFolderId": "50"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "9",
+                "name": "BloomReach Basket",
+                "type": "jsm",
+                "notes": "The Bloomreach basket contains detailed conversion parameters for each product that was purchased. This parameter is a JavaScript dictionary that contains one key called \"items\" with the value of the key being the list of products purchased.\n\nVariable Type: Array of Objects\n\nFormat: \n 'basket': {\n   \"items\": [\n        {\n          \"prod_id\" : \"{{Product ID}}\",\n          \"sku\": \"{{SKU}}\",.\n          \"name\": \"{{Product Name}}\",\n          \"quantity\": \"{{Quantity}}\",\n          \"price\": \"{{Price}}\"\n        },\n        {\n          \"prod_id\" : \"{{Product ID}}\",\n          \"sku\": \"{{SKU}}\",\n          \"name\": \"{{Product Name}}\",\n          \"quantity\": \"{{Quantity}}\",\n          \"price\": \"{{Price}}\"\n        }\n      ]\n    };\n\n\n(1) Basket Example with 1 product:\n 'basket': {\n    'items': [\n        {\n          'prod_id' : 'pid123456',  // this is the product ID and needs to match the product ID sent in the feed.\n          'sku' : 'sku789', // This is the sku id. This should match the unique sku id sent in the feed. It only applies if you have skus. \n          'name': 'Cashmere Sweater', // product name\n          'quantity': '1', // quantity of this product in the basket\n          'price': '65.95', // This should be the unit price per product and NOT the total price. If the item is on sale, this is the unit sale price.\n          'prod_ver': '12345-789', // This only applies to B2B customers. Leave empty if not this a B2B implementation.\n       }\n    ]\n };\n\n(2) Basket Example with 2 products, first product has a sku, second product does not have a sku:\n 'basket': {\n   \"items\": [\n        {\n          \"prod_id\" : \"pid123456\",\n          \"sku\": \"sku789\",.\n          \"name\": \"Cashmere Sweater\",\n          \"quantity\": \"1\",\n          \"price\": \"65.95\"\n        }, // make sure to add a comma delimiter to separate multiple product\n        {\n          \"prod_id\" : \"pid56789\",\n          \"sku\": \"\",\n          \"name\": \"Blue Skinny Jeans\",\n          \"quantity\": \"2\",\n          \"price\": \"79.99\"\n        } // no comma delimiter after the last product\n      ]\n   };\n\n(3) Basket Example with 2 products, first product is a Product Bundle, second product is an individual product:\n'basket': {\n   \"items\": [\n        {\n          \"prod_id\" : \"bundle223344\",\n          \"sku\": \"\",.\n          \"name\": \"Linen Bed Sheet Set\",\n          \"quantity\": \"1\",\n          \"price\": \"265.95\"\n        }, // make sure to add a comma delimiter to separate multiple product\n        {\n          \"prod_id\" : \"pid56789\",\n          \"sku\": \"\",\n          \"name\": \"Blue Skinny Jeans\",\n          \"quantity\": \"2\",\n          \"price\": \"79.99\"\n        } // no comma delimiter after the last product\n      ]\n   };\n\n\nIf the item in the basket is a Product Collection, Product Bundle or Sku Set:\n         (a)  Your Collection Pages have their own unique ID and are sold exactly like standalone products, then enter the collection ID in the prod_id \n                field. Make sure that this collection ID is sent in the feed in the product ID field.\n\n         (b) Your Product Collections have their own unique ID, but cannot be purchased as a whole; only the collections' individual parts/products \n               can be purchased and each of these individual parts have their own ID. In this case, list all individual products in the basket and the \n               prod_id is the the ID of each product. Make sure that each product ID is sent in the feed in the product ID field.\n\n         (c) Products that are a part of a Collection but can only be purchased from their own individual product page. In this case follow the same \n               guideline as described in (b)\n\n\n\nBasket Format after Conversion Pixel fires:\ni<prod_id>'s<sku>'n<product_name>'q<quantity>'p<price>'r<prod_ver>\nEach product parameter will be separated by '\nEach product will be separated by !\n\nBased on the Basket Example (1) above, the basket will show the following string after the pixel has fired:\n!ipid123456'ssku789'nCashmere Sweater'q1.0'p69.95'r12345-789\n\nBased on Basket Example (2) above, the basket will show the following string after the pixel has fired:\n!ipid123456'ssku789'nCashmere Sweater'q1.0'p69.95'r12345-789!ipid56789'nBlue Skinny Jeans'q2.0'p79.99\nIf the sku or prod_ver is left empty, it will not show in the transformed basket string.\n\nBased on the Basket Example (3) above, the basket will show the following string after the pixel has fired:\n!bundle223344'nLinen Bed Sheet Set'q1.0'p265.95!ipid56789'nBlue Skinny Jeans'q2.0'p79.99",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function () {\n  return {\"items\": google_tag_manager[{{Container ID}}].dataLayer.get(\"transaction.items\")};\n}"
+                    }
+                ],
+                "fingerprint": "1497462397472",
+                "parentFolderId": "50"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "18",
+                "name": "BloomReach Basket Value",
+                "type": "v",
+                "notes": "The total price of the checkout basket including tax, shipping and/or discounts in the account currency.\n\nVariable Type: String\n\nFormat: The total price of the checkout basket, in the account currency, without any symbols. \n\nExample: If the checkout basket was $100 with $5 tax and $10 shipping, the value for this parameter should be \"115.00\".",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "transaction.total"
+                    }
+                ],
+                "fingerprint": "1497459974487",
+                "parentFolderId": "50"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "20",
+                "name": "BloomReach Cart Data",
+                "type": "v",
+                "notes": "One of the needs beyond the basic tracking in BloomReach Analytics is to track when a user adds items to a cart once the page is loaded. This will be called from the cart data layer variable. function in your code. \nHere is a simple example of how you might integrate the logEvent() function into an html element on your page. Assuming a button called \"add to cart\" exists,\n\n\nVariable Type:\n\nFormat: \n\nExample:",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "cart"
+                    }
+                ],
+                "fingerprint": "1497464933910",
+                "parentFolderId": "50"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "14",
+                "name": "BloomReach Category",
+                "type": "v",
+                "notes": "The breadcrumb of the page.\n\nDependencies: Needs to match the\"crumbs\" field in the product feed that you send to BloomReach.\n\nVariable Type: String\n\nFormat: <top level crumb>|<first level crumb>|<second level crumb>\nCrumbs need to be delimited by |\nMake sure to URL Encode the full crumb string.\n\nExample:\nIf your category crumb is \"Home/Clothing/Outerwear\", then send \"Home%7CClothing%7COuterwear\"",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "category.name"
+                    }
+                ],
+                "fingerprint": "1497463755835",
+                "parentFolderId": "50"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "15",
+                "name": "BloomReach Category ID",
+                "type": "v",
+                "notes": "A Unique category ID as referred to in the database/catalog. This refers to the ID of the leaf node. \nIf your category page does not have a unique ID, but it has a unique breadcrumb path, then enter the name of the last crumb (leaf node).\nIf your category page does not have a unique bread crumb path, please consult with your Bloomreach TPM for options.\n\nDependencies: This should match the \"crumbs_id\" field in the product feed that you send to BloomReach. \nThis ID typically refers to the \"leaf\" of the crumb.\n\nVariable Type: String. This field value is case-sensitive.\n\nExample (1) with unique Category ID: cat749\n\nExample (2) with unique Bread Crumb path:\nIf you crumb path is Home/Women/Outerwear, enter \"Outerwear\" as Category ID. \nPlease ensure that this leaf node is sent in the \"crumbs_id\" field in the Product feed that you send to Bloomreach.",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "category.id"
+                    }
+                ],
+                "fingerprint": "1497464042634",
+                "parentFolderId": "50"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "4",
+                "name": "BloomReach Domain Key",
+                "type": "v",
+                "notes": "[Optional field] The BloomReach-provided ID of the domain receiving the request. This parameter identifies the specific site language version when one account ID hosts multiple site versions with different languages. BloomReach uses this value to ensure that only query and analytics data that pertain to that language are used for respective features.\n\nVariable Type: String, This field value is case-sensitive.\n\nAdditional information: Your Bloomreach Technical Account Manager will provide this information during technical Kickoff call",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "countryVersion"
+                    }
+                ],
+                "fingerprint": "1497464456810",
+                "parentFolderId": "50"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "17",
+                "name": "BloomReach Is Conversion",
+                "type": "v",
+                "notes": "Set to 1 on the Conversion or Thank you page (page after the customer completes the purchase).\n\nVariable Type: String, This field value is case-sensitive.\n\nFormat: String\n\nExample: 1",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "isConversion"
+                    }
+                ],
+                "fingerprint": "1497464793729",
+                "parentFolderId": "50"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "19",
+                "name": "BloomReach Order ID",
+                "type": "v",
+                "notes": "The order id associated with the order placed. This id should match the orderID used in your analytics systems. This is used to reconcile BloomReach's analytics data with your analytics systems.\n\nVariable Type: String\n\nExample: 12123455",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "transaction.id"
+                    }
+                ],
+                "fingerprint": "1497464838954",
+                "parentFolderId": "50"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "8",
+                "name": "BloomReach Page Type",
+                "type": "jsm",
+                "notes": "Maps your site's page type classifications to the values BloomReach expects for our page type classifications.\n\nRequired on *all* page views, including desktop, mobile, and tablet versions.\n\nBloomReach's Page Type classifications:\n\n* homepage -  homepage or landing pages\n* category - category listing pages and category product listing pages\n* search - search listing pages\n* product - product, product bundle, product collection or sku set pages\n* thematic - BloomReach thematic pages\n* content -  content pages\n* other - any pagetype that is not one of the above types\n\nVariable Type: String of enumerated type of (\"homepage\", \"product', \"category\", \"search\", \"content\", \"thematic\", \"jfy\", \"mlt\", \"trend\")\n\nVariable Example: \"homepage\"",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function () {\n  var pageTypeMappings = {\n    \"home\": \"homepage\",\n    \"pdp\": \"product\",\n    \"cat\": \"category\",\n    \"search\": \"search\",\n    \"cont\": \"content\",\n    \"thematic\": \"thematic\",\n    \"justforyou\": \"jfy\",\n    \"morelikethis\": \"mlt\",\n    \"trend\": \"trend\"\n  }\n  \n  var pageType = google_tag_manager[{{Container ID}}].dataLayer.get(\"pageType\");\n  \n  if ( pageTypeMappings.hasOwnProperty(pageType) ) {\n    return pageTypeMappings[pageType];\n  } else {\n    return \"other\"\n  }\n  \n}"
+                    }
+                ],
+                "fingerprint": "1497384051697",
+                "parentFolderId": "50"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "10",
+                "name": "BloomReach Product ID",
+                "type": "v",
+                "notes": "This is the unique ID, which describes a product, product bundle, product collection or sku set. If a product is available in multiple SKUs (e.g. color/size combinations), this field refers to the id shared by all the SKUs for a product.\n\nData Type: String, This field value is case-sensitive.\n\nDependencies: This field needs to match the unique product id sent in the feed.\n\nExamples:\n(1) Product Page: If your product ID is prod1235, enter prod1234\n\n(2) Product Collection Page: \n    (a) If your Product Collection page has their own unique ID and is sold exactly like a standalone product, enter the collection ID. Make sure that this collection ID is sent in the feed as a product ID.\n\n    (b) If your Product Collection has their own unique ID, but cannot be purchased as a whole; only the collections' individual parts can be purchased and each of these individual parts have their own ID, enter the collection ID. Make sure that this collection ID is sent in the feed as a product ID.",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "product.id"
+                    }
+                ],
+                "fingerprint": "1497458292752",
+                "parentFolderId": "50"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "11",
+                "name": "BloomReach Product Name",
+                "type": "v",
+                "notes": "The name of the product being viewed.\n\nFor Product PageViews (single product, product collection, product bundle, or sku set pages) only.\n\nVariable Type: String\nVariable Example: \"Blue Lace Dress\"",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "product.name"
+                    }
+                ],
+                "fingerprint": "1497383526599",
+                "parentFolderId": "50"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "12",
+                "name": "BloomReach Product SKU",
+                "type": "v",
+                "notes": "For Product PageViews only.\n\nUnique SKU ID representing the selected variant of this product (e.g. size M, color blue of a t-shirt). If SKU is not applicable to the product, leave this blank.\n\nVariable Type: String\nVariable Examples:\n\n\"789\"\n\"SM123\"",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "product.sku"
+                    }
+                ],
+                "fingerprint": "1497383187166",
+                "parentFolderId": "50"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "13",
+                "name": "BloomReach Product Version ID",
+                "type": "v",
+                "notes": "For Product PageViews only.\n\nIf you are sending a B2B feed where each Product ID has multiple derived versions, populate this parameter with the Product Version ID. This should be the unique key that identifies the specific version of the Product ID that a particular client sees. E.g. if your feed contains a printer with Product ID `12345` and each client sees a product version with a different Product Title (Business X Preferred Printer, Business Y Preferred Printer), then populate this field with the appropriate Product Version ID.\n\nVariable Type: String\nVariable Examples:\n\n\"12345-789\"\n\"12345-678`",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "product.version"
+                    }
+                ],
+                "fingerprint": "1497383082280",
+                "parentFolderId": "50"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "23",
+                "name": "BloomReach Quick View Data",
+                "type": "v",
+                "notes": "The data object associated with a product quick view event. Data object properties:\n\n* prod_id: (String) For product pages, this should match the unique product id sent in the feed. If a product is available in multiple skus (e.g. color/size combinations), this field refers to the id shared by all the skus for a product.\n* prod_name: (String) Name of the product\n* sku: (String) Unique sku id that representing the selected variation of this product, if applicable.\n\nFor example, if a user opens a product quick view for \"Blue Lace Dress\",  the data object would be:\n\n {\"prod_id\": \"1245567\", \"prod_name\": \"Blue Lace Dress\", \"sku\": \"987\"}\n\nVariable Type: Object\nVariable Examples:\n\nExample (1): Product Quick view for product with a Sku: {\"prod_id\": \"34561234\", \"prod_name\": \"Blue Lace Dress\", \"sku\": \"987\"}\nExample (2): Product Quick view for product without a sku: {\"prod_id\": \"12349028\", \"prod_name\": \"Beach Ball\"}\nExample (3): Product Quick view for a Product Bundle:  {\"prod_id\": \"set223344\", \"prod_name\": \"Linen Bed Set\"}\n\nIf the Product Quick View is a Product Collection, Product Bundle or Sku Set:\n         (a)  Your Collection Pages have their own unique ID and are sold exactly like standalone products, then enter the collection ID in the prod_id \n                field. Make sure that this collection ID is sent in the feed in the product ID field.\n\n         (b) Your Product Collections have their own unique ID, but cannot be purchased as a whole; only the collections' individual parts/products \n               can be purchased and each of these individual parts have their own ID. In this case,  enter the collection ID in the prod_id field. Make sure \n               that this collection ID is sent in the feed in the product ID field.\n\n         (c) Your Products are a part of a Collection but can only be purchased from their own individual product page. In this case enter the product \n               ID of the first product in the prod_id field.",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "quickViewProduct"
+                    }
+                ],
+                "fingerprint": "1497465496315",
+                "parentFolderId": "50"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "24",
+                "name": "BloomReach Search Submit Data",
+                "type": "v",
+                "notes": "The data object associated with a search submit event. Data object includes one required properties:\n* `q`: search query\n\nFor example, if a user types `blue dress` and then clicks the search button or hits enter to submit the search,  the data object would be:\n\n{\"q\": \"blue dress\"}\n\nVariable Type: Object with one required String property of `q`.\nVariable Examples:\n\n{\"\"q\": \"red shoes\"}\n{\"q\": \"blue summer dress\"}",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "searchSubmit"
+                    }
+                ],
+                "fingerprint": "1497382010031",
+                "parentFolderId": "50"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "22",
+                "name": "BloomReach Search Suggest Data",
+                "type": "v",
+                "notes": "The data object associated with a suggested search click. Data object includes two required properties:\n* `aq`: the typed query\n* `q`: clicked suggested query\n\nFor example, when a user types `blu` and the auto-suggest window shows up and a user clicks `blue summer dress`,  the data object returned would be:\n\n{\"aq\": \"blu\", \"q\": \"blue summer dress\"}\n\nVariable Type: Object with two string properites `aq` and `q`.\nVariable Examples:\n\n{\"aq\": \"re\", \"q\": \"red shoes\"}\n{\"aq\": \"blue su\", \"q\": \"blue summer dress\"}",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "searchSuggest"
+                    }
+                ],
+                "fingerprint": "1497381807875",
+                "parentFolderId": "50"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "16",
+                "name": "BloomReach Search Term",
+                "type": "v",
+                "notes": "For search page views only, this it the value of the search query describing the page.\n\nVariable Type: String\nExample Values: \"blue dress\", \"red dress\"",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "search"
+                    }
+                ],
+                "fingerprint": "1497381203157",
+                "parentFolderId": "50"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "25",
+                "name": "BloomReach Tag Manager ID",
+                "type": "c",
+                "notes": "When more than one tag management solutions are firing BloomReach pixels simultaneously, this value is used as an identifier to filter out duplicate pixels. This value can be any string identifier as long as it is constant per tag manager solution.\n\nVariable Type: String\nExample Values: \"gtm\", \"googletagmanager\", \"dtm\"",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "gtm"
+                    }
+                ],
+                "fingerprint": "1497381002638",
+                "parentFolderId": "50"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "2",
+                "name": "BloomReach User ID",
+                "type": "v",
+                "notes": "Universal customer ID, if you use one, to pass to BloomReach to recognize users in a way that is aligned with our system for various personalization features.  Should be an anonymized string and should not contain the user's email or other personally identifiable information.\n\nVariable Type: String\nExample Value: \"947345478564\"",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "userId"
+                    }
+                ],
+                "fingerprint": "1497380731020",
+                "parentFolderId": "50"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "5",
+                "name": "BloomReach View ID",
+                "type": "v",
+                "notes": "Identifies the specific site catalog view to show when one BloomReach account ID hosts multiple site versions with unique product catalog characteristics, such as product price, availability, or titles. BloomReach uses View ID value to display the right product information for a user based on their site view. This must be consistent in the pixel, API and product catalog sent to BloomReach.\n\nThis field value is case-sensitive.\n\nVariable Type: String\nExample Value: \"\"",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "countryVersion"
+                    }
+                ],
+                "fingerprint": "1497380754396",
+                "parentFolderId": "50"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "variableId": "7",
+                "name": "Page Type",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "pageType"
+                    }
+                ],
+                "fingerprint": "1497035812844"
+            }
+        ],
+        "folder": [
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "folderId": "48",
+                "name": "BloomReach Events",
+                "fingerprint": "1497124756935"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "folderId": "49",
+                "name": "BloomReach PageViews",
+                "fingerprint": "1497124817466"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "folderId": "50",
+                "name": "BloomReach Variables",
+                "fingerprint": "1497125050309"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "type": "EVENT",
+                "name": "Event"
+            },
+            {
+                "accountId": "1321514653",
+                "containerId": "6984898",
+                "type": "CONTAINER_ID",
+                "name": "Container ID"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/1321514653/containers/6984898/versions/0?apiLink=version"
+    }
+}
