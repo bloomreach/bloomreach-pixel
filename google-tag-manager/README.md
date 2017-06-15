@@ -69,7 +69,8 @@ Note: on initial import, each Variables' type and definition have been set with 
 
 1. Deploy Container to your development environment or use the preview functionality of GTM to simulate your BloomReach Pixel work.
 2. Use the BloomReach [Pixel Validator instuctions](https://docs.bloomreach.com/display/CORSIG/Pixel+Deployment#PixelDeployment-PixelValidatorHowToUsetheBloomReachPixelValidator) to verify each Tag.
-3. If you have any validation issues, please update GTM container appropriately to resolve. 
+3. If you have any validation issues, please update GTM container appropriately to resolve.
+4. Notify your Technical Project Manager that container is deployed on staging.
 
 ### Step 5: Publish
 
