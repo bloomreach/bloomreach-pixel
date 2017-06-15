@@ -55,6 +55,8 @@ BloomReach Tags will look similar to below after triggers are added:
 
 At this point your tags will fire, however, they will be missing required data. You still need to configure each individual BloomReach Variables.
 
+Note: on initial import, each Variables' type and definition have been set with an example setting that will need to be changed to tailor to your specific site.
+
 1. Navigate to `BloomReach Pixel Init` workspace.
 2. Select `Variables` left-hand navigation item.
 3. Select the first BloomReach Variable.
