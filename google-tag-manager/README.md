@@ -13,11 +13,18 @@ If you need further help, please see the [main pixel specification](https://docs
 
 ## Step by Step Guide
 
-Note: You need `edit` permissions to the container you wish to implement against.
+[![Video of step by step BloomReach Pixel container import](images/bloomreach-gtm-pixel-import-play.001.jpeg)](http://br-user.s3.amazonaws.com/stormy/bloomreach-pixel/google-tag-manager/images/bloomreach-gtm-pixel-import.m4v)
+
+These steps assume:
+
+* You already have a GTM account and a container published on your website.
+* You have `edit` permissions to the container you wish to implement against.
 
 ### Step 1: Import BloomReach tags/variables into your container
 
 Your Technical Project Manager has created a JSON file that is tailored to the specific Pixel requirements of your site and is importable into your GTM container.
+
+All BloomReach items are prefixed with `BloomReach` and are unlikely to conflict with existing items on your site. The items are categorized into folders prefixed with `BloomReach` to help keep your container organized.
 
 The name of the file follows the format `BLOOMREACH-GTM-{{ACCT_ID}}-v1.json`.
 
@@ -55,7 +62,7 @@ BloomReach Tags will look similar to below after triggers are added:
 
 At this point your tags will fire, however, they will be missing required data. You still need to configure each individual BloomReach Variables.
 
-Note: on initial import, each Variables' type and definition have been set with an example setting that will need to be changed to tailor to your specific site.
+Note: On initial import, each BloomReach Variable has been imported with a default variable type and setting for illustration purposes. Out of the box, none of the Variables will resolve properly until they are configured according to how your site and GTM container is setup.
 
 1. Navigate to `BloomReach Pixel Init` workspace.
 2. Select `Variables` left-hand navigation item.
