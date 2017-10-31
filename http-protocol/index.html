@@ -1,0 +1,333 @@
+<html>
+  <head>
+    <meta name="robots" content="noindex">
+    <style type="text/css">
+      body {
+        margin:40px;
+        max-width:1200px;
+        line-height:1.6;
+        font-size:18px;
+        color:#444;
+        padding:0 10px
+      }
+      
+      h1,h2,h3 {
+        line-height:1.2
+      }
+      
+      code {
+        display:inline-block;
+        max-width:850px;
+        overflow-wrap: break-word;
+        background-color:#dfdfdf;
+      }
+
+      .specExample {
+        width: 30%;
+      }
+
+      .specDesc {
+        width: 40%;
+      }
+
+      .spec, .track, .explain {
+        padding: 10px;
+        margin: 10px;
+        background-color: #eee;}
+
+      .tg {
+        border-collapse:collapse;
+        border-spacing:0;
+        border-color:#777;
+        border-width: 1px;
+        table-layout:fixed;
+      }
+
+      .tg td {
+        font-family:Arial, sans-serif;
+        font-size:14px;
+        padding:10px 5px;
+        border-style:solid;
+        border-width:0px;
+        word-wrap:break-word;
+        word-break: break-all;
+        border-color:#ccc;
+        color:#333;
+        background-color:#fff;
+        border-top-width:1px;
+        border-bottom-width:1px;
+        padding:10px 10px;
+      }
+
+      .tg th {
+        font-family:Arial, sans-serif;
+        font-size:14px;
+        font-weight:bold;
+        padding:10px 5px;
+        border-style:solid;
+        border-width:0px;
+        overflow:hidden;
+        word-break:normal;
+        border-color:#ccc;
+        color:#333;
+        background-color:#f0f0f0;
+        border-top-width:1px;
+        border-bottom-width:1px;
+        text-align:left;
+      }
+      
+      .tg .tg-yw4l {
+        vertical-align:top
+      }
+
+      .tg .tg-b7b8 {
+        background-color:#f9f9f9;
+        vertical-align:top;
+      }
+    </style>
+
+    <script src="app.js"></script>
+
+  </head>
+
+  <body>
+
+
+    <h1>BloomReach Pixel - HTTP Guide</h1>
+
+    <p>BloomReach tracks analytic data from your app through our Pixel Protocol over HTTP.</p>
+
+    <p>This guide will help you understand:</p>
+
+    <ul>
+      <li>How to send analytic data</li>
+      <li>When to send analytic data</li>
+      <li>What analytic data to send</li>
+    </ul>
+
+    <h2> Pixel Request Format </h2>
+
+    <div class="explain">
+
+      <p>All Pixel data is sent via an HTTP GET request to a single secure endpoint:</p>
+
+      <code id="endpoint"></code>
+
+      <p>The analytic data for each request is encoded in the URL query string as parameter pairs.</p>
+
+      <p>Each parameter pair:</p>
+
+      <ul>
+        <li>has a key and value</li>
+        <li>key and value is separated by an <code>=</code> character</li>
+        <li>is delimited by an <code>&amp;</code> character if multiple pairs</li>
+      </ul>
+
+      <p>Each parameter pair's value:</p>
+
+      <ul>
+        <li>must be UTF-8</li>
+        <li>must be <a href="http://en.wikipedia.org/wiki/Percent-encoding">Url Encoded</a></li>
+        <li>has a specific format depending on the type of parameter it is</li>
+      </ul>
+
+      <p>Example Request:</p>
+
+      <code id="genericExample"></code>
+    </div>
+
+    <h2>Pixel Response Format</h2>
+
+      <div class="explain">
+
+      <p>If the HTTP request was received, we will return a 200 status code. The Content-Type will be <code>image/gif</code> and the content will be a 1x1 transparent gif image.</p>
+
+      <p>The HTTP response <em>does not</em> return an error code if the data was malformed, or if the data in the payload was incorrect or was not processed by BloomReach. If you do not get a 200 status code, you should <em>not</em> retry the request. Instead, verify your HTTP request doesn't contain errors.</p>
+    </div>
+
+    <div id="allPixel">
+      <h2>All Pixel Requests</h2>
+        <div class="track">
+        <p>All pixel requests must contain the following parameters:</p>
+
+        <div id="requiredAll"></div>
+      </div>
+    </div>
+
+    <div id="trackingTypes">
+      <h2>Tracking Types</h2>
+
+      <p>All pixel requests will be one of either two types:</p>
+
+      <ul>
+        <li>Pageview (Screenviews)</li>
+        <li>Events (all other non-screenview user interactions)</li>
+      </ul>
+      
+      <div id="pageviewPixel" class="track">
+        <h3>Pageview Pixel</h3>
+
+        <p>A pageview pixel should be requested anytime there is a screen change on your application.</p>
+
+        <p>The <code>type</code> parameter for all Pageview requests is <code>pageview</code>.</p>
+
+        <p>Depending on the Page Type Classification (<code>ptype</code>) of the screen, additional required parameters may be needed and are detailed in later sections.</p>
+
+        <div id="requiredPageview"></div>
+
+        <!-- <div id="homepageExample" data-title="Home Screen Pageview Pixel"></div>-->
+      </div>
+
+      <div id="eventPixel" class="track">
+        <h3>Event Pixel</h3>
+
+        <p>BloomReach tracks these specific user interactions in your application:</p>
+
+        <ul>
+          <li><a class="nonLink" href="#addToCart">Add to Cart</a> - When a user adds an item to their cart</li>
+          <li><a class="nonLink" href="#searchEvent">Search</a> - When a user submits a direct query to your search engine</li>
+          <li><a class="nonLink" href="#suggestEvent">Suggest</a> - When a user chooses an autosuggested search result from your search engine</li>
+        </ul>
+
+        <p>The <code>type</code> parameter for all Event Pixel requests is <code>event</code>.</p>
+
+        <p>Note: an Event will always occur on a particular pageview (screen) and the required information from the associated pageview will *also* need to be passed with the event.</p>
+
+        <p>Every Event Pixel request must have the following required parameters:</p>
+
+        <div id="requiredEvent"></div>
+      </div>
+
+    </div>
+
+    <h2>Pagetype and Event Specific Requirements</h2>
+
+    <div id="product" class="spec">
+      <h3>Product Pageview</h3>
+
+      <p>When the Page Type Classification (<code>ptype</code>) of a screen is <code>product</code>, the following parameters are required:</p>
+
+      <div id="requiredProduct"></div>
+
+      <h4 class="examples">Examples</h4>
+
+      <div id="productExample" data-title="Product Screen Pageview Pixel"></div>
+    </div>
+
+    <div id="category" class="spec">
+      <h3>Category Pageview</h3>
+
+      <p>When the Page Type Classification (<code>ptype</code>) of a screen is <code>category</code>, the following parameters are required:</p>
+
+      <div id="requiredCategory"></div>
+
+      <h4 class="examples">Examples</h4>
+
+      <div id="categoryExample" data-title="Category Screen Pageview Pixel"></div>
+    </div>
+
+    <div id="search" class="spec">
+      <h3>Search Pageview</h3>
+
+      <p>When the Page Type Classification (<code>ptype</code>) of a screen is <code>search</code>, the following parameters are required:</p>
+
+      <div id="requiredSearch"></div>
+
+      <h4 class="examples">Examples</h4>
+
+      <div id="searchExample" data-title="Search Screen Pageview Pixel"></div>
+    </div>
+
+    <div id="conversion" class="spec">
+      <h3>Conversion Pageview</h3>
+
+      <p>When the Page Type Classification (<code>ptype</code>) of a screen is <code>conversion</code>, the following parameters are required:</p>
+
+      <p>Note: Conversion screen is the screen view displayed directly after a purchase has been completed.</p>
+
+      <div id="requiredConversion"></div>
+
+      <h4 class="examples">Examples</h4>
+
+      <div id="conversionExample" data-title="Conversion Screen Pageview Pixel"></div>
+    </div>
+
+    <div id="addToCart" class="spec">
+      <h3>Add To Cart Event</h3>
+
+      <p>When a user adds an item to their cart, please make an Add To Cart Event request.</p>
+
+      <ul>
+        <li>The <code>group</code> parameter is <code>cart</code>.</li>
+        <li>The <code>etype</code> parameter is <code>click-add</code>.</li>
+      </ul>
+
+      <p>Additional required parameters:</p>
+
+      <div id="requiredCart"></div>
+
+      <h4 class="examples">Examples</h4>
+
+      <div id="cartProductExample" data-title="Add To Cart Event from Product Screen"></div>
+
+      <div id="cartCategoryExample" data-title="Add To Cart Event from Category Screen"></div>
+    </div>
+
+    <div id="searchEvent" class="spec">
+
+      <h3>Search Event</h3>
+
+      <p>When a user submits a direct query to your search engine, please make a Search Event request. For example, if the user enters <code>blue lace dress</code> into your search query input field and either clicks on the search button or hits enter to execute a search.</p>
+
+      <ul>
+        <li>The <code>group</code> parameter for all Search Events is <code>suggest</code>.</li>
+        <li>The <code>etype</code> parameter for all Search Events is <code>submit</code>.</li>
+      </ul>  
+
+      <p>Additional required parameters:</p>
+
+      <div id="requiredSearchEvent"></div>
+
+      <h4>Examples</h4>
+      <div id="searchEventProductExample" data-title="Search Event Pixel from Product Screen"></div>
+
+    </div>
+
+    <div id="suggestEvent" class="spec">
+
+      <h3>Suggest Event</h3>
+
+      <p>When a user chooses an autosuggested search result from your search engine, please make a Suggest Event request. For example, if the user enters <code>blu</code> into your search query input field and you display a list of suggested searches and they choose <code>blue lace dress</code>.</p>
+
+      <ul>
+        <li>The <code>group</code> parameter is <code>suggest</code>.</li>
+        <li>The <code>etype</code> parameter is <code>click</code>.</li>
+      </ul>
+
+      <p>Additional required parameters:</p>
+      <div id="requiredSuggestEvent"></div>
+
+      <h4>Examples</h4>
+      <div id="suggestEventHomepageExample" data-title="Suggest Event Pixel from Homepage Screen"></div>
+
+    </div>
+
+    <script>
+
+      Object.keys(exampleData).forEach(function (id) { 
+        let url = renderExample(endpoint, pixelSpec, exampleData[id].specs, exampleData[id].overRides);
+        let placeholder = document.getElementById(`${id}Example`);
+        let title = placeholder.dataset.title; 
+        //codeEl.innerHTML = url;
+
+        let anchor = document.createElement("a");
+        anchor.href = url;
+        anchor.innerText = title;
+        placeholder.appendChild(anchor);
+      })
+
+      Object.keys(templates).forEach(function (id) {document.getElementById(id).innerHTML = templates[id]});
+    </script>
+  </body>
+</html>
+
